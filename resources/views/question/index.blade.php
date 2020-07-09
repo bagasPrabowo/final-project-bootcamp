@@ -2,8 +2,10 @@
 
 @section('content')
     <div class="ml-2 mt-2">
-      <a href="/pertanyaan/create" class="btn btn-primary">Buat Pertanyaan</a>
-    </div>  
+      <a href="/pertanyaan/create" class="btn btn-light">
+        <i class="icon fa fa-question-circle-o" aria-hidden="true"></i>
+        Buat Pertanyaan</a>
+    </div>
       @foreach($questions as $key => $question)
         <div class="card ml-2 mt-2">
           <div class="card-body">

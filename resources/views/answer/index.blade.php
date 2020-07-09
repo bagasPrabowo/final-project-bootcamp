@@ -15,14 +15,14 @@
         <p class="card-text" style="text-align: right;">{{$pertanyaan->created_at}}</p>
       </div>
     </div>
-  
-    <div class="ml-2">  
+
+    <div class="ml-2">
       <form action="{{route('jawaban.store', ['pertanyaan_id' => $pertanyaan->id])}}" method='post'>
         @csrf
 
         <div class="form-group">
           <label for="isi">Isi</label>
-          <textarea name="isi" class="form-control my-editor">{!! old('isi', $isi ?? '') !!}</textarea>
+          <textarea name="isi" placeholder="Jawab disini" class="form-control my-editor">{!! old('isi', $isi ?? '') !!}</textarea>
         </div>
         @error('isi')
             <div class="alert alert-danger">{{ $message }}</div>
