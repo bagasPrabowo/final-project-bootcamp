@@ -10,8 +10,7 @@
   @if(isset($pertanyaan))
     <div class="card ml-2 mt-2">
       <div class="card-body">
-        <h2 class="card-text"><b>{{ucfirst($pertanyaan->judul)}}</b></h2>
-        <p class="card-text"> {{ ucwords($user->name) }}</p>
+        <h2 class="card-title"><b>{{ucfirst($pertanyaan->judul)}}</b></h2>
         <p class="card-text">{!!$pertanyaan->isi!!}</p>
         <p class="card-text" style="text-align: right;">{{$pertanyaan->created_at}}</p>
       </div>
