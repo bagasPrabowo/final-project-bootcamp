@@ -8,13 +8,6 @@
 	<form action="{{route('pertanyaan.store')}}" method='post'>
 	  @csrf
 		<div class="form-group">
-		  <label for="name">Nama</label>
-			<input type="text" name="name" placeholder="Enter Name" class="form-control" value="{{old('name')}}">
-		</div>
-		@error('name')
-		    <div class="alert alert-danger">{{ $message }}</div>
-		@enderror
-		<div class="form-group">
 		  <label for="judul">Judul</label>
 			<input type="text" name="judul" placeholder="Title" class="form-control" value="{{old('judul')}}">
 		</div>
