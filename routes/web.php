@@ -11,11 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('lte_layout.master');
-});
-
-route::get('/pertanyaan', 'QuestionsController@index')->name('pertanyaan.index');
+route::get('/', 'QuestionsController@index')->name('pertanyaan.index');
 
 route::get('/pertanyaan/create', 'QuestionsController@create')->name('pertanyaan.create');
 
