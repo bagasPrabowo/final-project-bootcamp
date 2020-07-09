@@ -19,23 +19,21 @@ Route::group(['middleware' => 'auth'], function(){
     route::get('/pertanyaan/create', 'QuestionsController@create')->name('pertanyaan.create');
 
     route::post('/pertanyaan', 'QuestionsController@store')->name('pertanyaan.store');
-    
+
     route::get('/pertanyaan/{id}', 'QuestionsController@show')->name('pertanyaan.show');
-    
+
     route::get('/pertanyaan/{id}/edit', 'QuestionsController@edit')->name('pertanyaan.edit');
-    
+
     route::put('/pertanyaan/{id}', 'QuestionsController@update')->name('pertanyaan.update');
-    
+
     route::delete('/pertanyaan/{id}', 'QuestionsController@delete')->name('pertanyaan.delete');
-    
+
     route::get('/jawaban/{pertanyaan_id}', 'AnswersController@index')->name('jawaban.index');
-    
+
     route::post('/jawaban/{pertanyaan_id}','AnswersController@store')->name('jawaban.store');
 });
 
 Route::get('/pertanyaan', 'QuestionsController@index')->name('pertanyaan.index');
-
-
 
 Auth::routes();
 

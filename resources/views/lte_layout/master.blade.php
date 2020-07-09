@@ -16,6 +16,15 @@
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   @stack('script-head')
+  <script src="https://cdn.tiny.cloud/1/z1ybuq6c6h62jidd0sgqubro6egi87g8wqmu31tfobfjj1fb/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+  <script>tinymce.init({ selector:'textarea' ,
+         plugins: 'a11ychecker advcode casechange formatpainter linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tinycomments tinymcespellchecker',
+         toolbar: 'a11ycheck addcomment showcomments casechange checklist code formatpainter pageembed permanentpen table',
+         toolbar_mode: 'floating',
+         tinycomments_mode: 'embedded',
+         tinycomments_author: 'Author name',
+
+  });</script>
 </head>
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->

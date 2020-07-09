@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Question;
 
 class QuestionsController extends Controller
 {
     public function index(){
+        $user = Auth::user();
     	$questions = Question::all();
     	return view('question.index', get_defined_vars());
     }
@@ -20,13 +22,18 @@ class QuestionsController extends Controller
     public function store(Request $request){
         Validator::make($request->all(), [
             'judul' => 'required|unique:questions',
-            'name' => 'required',
             'isi' => 'required',
         ], [
             'required' => ':attribute harus diisi!',
             'unique' => ':attribute pertanyaan tidak boleh sama',
         ])->validate();
-    	$questions = Question::create($request->all());
+        $user = Auth::user();
+        if (!$user){
+            return redirect()->route('login');
+        }
+    	$questions = Question::create(array_merge($request->all(),[
+                                'user_id' => $user->id,
+                                ]));
     	if ($questions->save()) {
     		return redirect()->route('pertanyaan.index');
     	}
@@ -48,7 +55,7 @@ class QuestionsController extends Controller
             'name' => 'required',
             'isi' => 'required',
         ], [
-            'required' => ':attribute harus diisi!',            
+            'required' => ':attribute harus diisi!',
         ])->validate();
         $questions = Question::find($id);
         if ($questions->update($request->all())) {
