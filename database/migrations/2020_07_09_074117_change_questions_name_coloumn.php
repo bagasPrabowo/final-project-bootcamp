@@ -35,7 +35,7 @@ class ChangeQuestionsNameColoumn extends Migration
     {
         Schema::table('questions', function (Blueprint $table) {
             $table->dropForeign(['user_id']);
-            $table->string('name');
+            
         });
     }
 }
