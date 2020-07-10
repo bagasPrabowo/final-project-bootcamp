@@ -39,6 +39,9 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::post('/pertanyaan/{id}/1', 'VoteController@store1')->name('vote.store1');
+
+Route::post('/pertanyaan/{id}/0', 'VoteController@store2')->name('vote.store2');
 
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();

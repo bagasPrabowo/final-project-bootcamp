@@ -4,12 +4,12 @@ namespace App\Models;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 
-class VoteAnswer extends Model {
+class VotesQuestion extends Model {
 
 	protected $guarded= ['id'];
 
-	public function Answer(){
-        return $this->belongsTo('App\Models\Answer');
+	public function Question(){
+        return $this->belongsTo('App\Models\Question');
     }
 
     public function user()

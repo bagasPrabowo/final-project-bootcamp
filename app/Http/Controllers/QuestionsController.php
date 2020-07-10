@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Question;
+
 use App\Tag;
 
 class QuestionsController extends Controller
@@ -47,7 +48,7 @@ class QuestionsController extends Controller
             $tag=Tag::firstOrCreate($tagCheck);
             $questions->tags()->attach($tag->id);
         }
-        
+
         if ($questions->save()) {
     		return redirect()->route('pertanyaan.index');
     	}
@@ -79,7 +80,11 @@ class QuestionsController extends Controller
     }
 
     public function delete($id){
+        $user = Auth::user();
         $pertanyaan = Question::find($id);
+        if ($pertanyaan->user_id != $user->id) {
+            return redirect()->back();
+        }
         if ($pertanyaan->delete()) {
         return redirect()->route('pertanyaan.index');
         }

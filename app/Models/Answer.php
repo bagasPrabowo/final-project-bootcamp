@@ -17,4 +17,9 @@ class Answer extends Model {
         return $this->belongsTo('App\User', 'user_id', 'id');
     }
 
+    public function questions()
+    {
+        return $this->belongsTo('App\Models\Question', 'question_id', 'id');
+    }
+
 }

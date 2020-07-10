@@ -21,4 +21,10 @@ class Question extends Model {
     {
         return $this->belongsToMany('App\Tag', 'question_tag', 'question_id', 'tag_id');
     }
+
+    public function answer()
+    {
+        return $this->hasOne('App\Models\Answer', 'answer_id', 'id');
+    }
+
 }

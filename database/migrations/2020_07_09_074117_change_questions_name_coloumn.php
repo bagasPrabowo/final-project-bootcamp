@@ -20,6 +20,7 @@ class ChangeQuestionsNameColoumn extends Migration
             $table->foreign('user_id')
             ->references('id')
             ->on('users')
+            ->nullable()
             ->constrained()
             ->onDelete('cascade');
 
@@ -35,7 +36,7 @@ class ChangeQuestionsNameColoumn extends Migration
     {
         Schema::table('questions', function (Blueprint $table) {
             $table->dropForeign(['user_id']);
-            
+
         });
     }
 }

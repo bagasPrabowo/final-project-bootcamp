@@ -20,6 +20,7 @@ class ChangeAnswersNameColoumn extends Migration
             $table->foreign('user_id')
             ->references('id')
             ->on('users')
+            ->nullable()
             ->onDelete('cascade');
         });
     }
@@ -33,7 +34,7 @@ class ChangeAnswersNameColoumn extends Migration
     {
         Schema::table('answers', function (Blueprint $table) {
             $table->dropForeign(['user_id']);
-            
+
         });
     }
 }
