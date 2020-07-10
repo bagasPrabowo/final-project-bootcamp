@@ -24,7 +24,11 @@
 		@error('isi')
 		    <div class="alert alert-danger">{{ $message }}</div>
 		@enderror
-		<input type="submit" value="Submit">
+    <div class="form-group">
+		  <label for="tags">Tags</label>
+			<input type="text" name="tags" placeholder="Tags" class="form-control" id="tags">
+		</div>
+		<input type="submit" class="btn btn-primary" value="Submit">
 	</form>
   </div>
 @endsection

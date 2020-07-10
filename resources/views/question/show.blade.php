@@ -19,6 +19,10 @@
             <h4 class="card-text">{{ ucwords($pertanyaan->user->name) }}</h4>
             <h2 class="card-text"><b>{{ucfirst($pertanyaan->judul)}}</b></h2>
             <p class="card-text">{!!$pertanyaan->isi!!}</p>
+            @foreach($pertanyaan->tags as $tag)
+              <button class="btn btn-info btn-sm">{{$tag->tag_name}}</button>
+            @endforeach
+            <br>
             <a href="{{route('jawaban.index', ['pertanyaan_id' => $pertanyaan->id])}}" class="card-link btn btn-light">Jawab</a>
             <p class="card-text" style="text-align: right;">{{$pertanyaan->created_at}}</p>
           </div>
