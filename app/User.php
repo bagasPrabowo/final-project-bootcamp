@@ -47,13 +47,24 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Answer', 'user_id', 'id');
     }
 
-    public function upvotequestion()
+    public function votesquestions()
     {
+        return $this->hasManyThrough('App\Models\VotesQuestion', 'App\Models\Question');
 
     }
 
-    public function downvote()
+    public function votesanswers()
     {
+        return $this->hasManyThrough('App\Models\VotesAnswer', 'App\Models\Answer');
 
+    }
+
+    public function getContributionAttribute()
+    {
+        $questionUpVote = $this->votesquestions()->where('votes_questions.vote', 1)->count() * 10;
+        $questionDownVote = $this->votesquestions()->where('votes_questions.vote', 0)->count() * -1;
+        $answerUpVote = $this->votesanswers()->where('votes_answers.vote', 1)->count() *10;
+        $answerDownVote = $this->votesanswers()->where('votes_answers.vote', 0)->count() * -1;
+        return $questionUpVote + $questionDownVote + $answerUpVote + $answerDownVote;
     }
 }
