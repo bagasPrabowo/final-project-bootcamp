@@ -11,13 +11,6 @@
 	  @method('put')
 	  @csrf
 		<div class="form-group">
-		  <label for="name">Nama</label>
-			<input type="text" name="name" placeholder="Enter Name" class="form-control" value="{{$id->name}}" readonly>
-		</div>
-		@error('name')
-		    <div class="alert alert-danger">{{ $message }}</div>
-		@enderror
-		<div class="form-group">
 		  <label for="judul">Judul</label>
 			<input type="text" name="judul" placeholder="Title" class="form-control" value="{{$id->judul}}" readonly>
 		</div>

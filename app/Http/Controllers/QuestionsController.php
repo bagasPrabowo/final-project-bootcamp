@@ -61,13 +61,20 @@ class QuestionsController extends Controller
     }
 
     public function edit(Question $id){
+        $user = Auth::user();
+        $question = Question::find($id);
+        if ($question[0]->user_id != $user->id) {
+            return redirect()->back();
+        }
         return view('question.edit', get_defined_vars());
+        // }
+        // return redirect()->back();
+        
     }
 
     public function update(Request $request, $id){
         Validator::make($request->all(), [
             'judul' => 'required',
-            'name' => 'required',
             'isi' => 'required',
         ], [
             'required' => ':attribute harus diisi!',
