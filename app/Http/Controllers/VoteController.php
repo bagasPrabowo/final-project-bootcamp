@@ -19,6 +19,13 @@ class VoteController extends Controller
             'required' => ':attribute harus diisi!',
         ])->validate();
         $user = Auth::user();
+        $voted = VotesQuestion::firstOrNew(['user_id'=> $user, 'question_id' => $request]);
+        if ($voted){
+            return redirect()->back();
+        }
+        if ($user->contribution<15 && $request->vote == 0) {
+            return redirect()->back();
+        }
         if (!$user){
             return redirect()->route('login');
         }
@@ -38,6 +45,10 @@ class VoteController extends Controller
             'required' => ':attribute harus diisi!',
         ])->validate();
         $user = Auth::user();
+        $voted = VotesAnswer::firstOrNew(['user_id'=> $user, 'answer_id' => $request]);
+        if ($voted){
+            return redirect()->back();
+        }
         if ($user->contribution<15 && $request->vote == 0) {
             return redirect()->back();
         }
