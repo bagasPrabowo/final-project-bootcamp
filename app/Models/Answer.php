@@ -22,4 +22,17 @@ class Answer extends Model {
         return $this->belongsTo('App\Models\Question', 'question_id', 'id');
     }
 
+    public function votesanswers()
+    {
+        return $this->hasMany('App\Models\VotesAnswer');
+
+    }
+
+    public function getCountAttribute()
+    {
+        $answerUpVote = $this->votesanswers()->where('votes_answers.vote', 1)->count();
+        $answerDownVote = $this->votesanswers()->where('votes_answers.vote', 0)->count();
+        return $answerUpVote - $answerDownVote;
+    }
+
 }

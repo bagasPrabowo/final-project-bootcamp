@@ -27,4 +27,17 @@ class Question extends Model {
         return $this->hasOne('App\Models\Answer', 'answer_id', 'id');
     }
 
+    public function votesquestion()
+    {
+        return $this->hasMany('App\Models\VotesQuestion', 'question_id', 'id');
+
+    }
+
+    public function getCountAttribute()
+    {
+        $questionUpVote = $this->votesquestion()->where('votes_questions.vote', 1)->count();
+        $questionDownVote = $this->votesquestion()->where('votes_questions.vote', 0)->count();
+        return $questionUpVote - $questionDownVote;
+    }
+
 }

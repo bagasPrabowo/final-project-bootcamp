@@ -1,13 +1,17 @@
 @extends('lte_layout.master')
 
 @section('content')
- <div class="ml-2 mt-2">
+  <!-- tombol back -->
+  <div class="ml-2 mt-2">
   <a href="{{route('pertanyaan.index')}}" class="btn btn-danger"> Back </a>
   </div>
+  <!-- end back button -->
   @if(isset($pertanyaan))
     <div class="row">
+        <!-- vote -->
         <div class="col-0.5 ml-4">
             <br>
+            <!-- upvote -->
             <form action="{{route('vote.store1', ['id' => $pertanyaan->id])}}" method='post'>
                 @csrf
                 <div class="form-group">
@@ -17,7 +21,9 @@
                     <button type="submit" class="fa fa-chevron-up" style="color: black" aria-hidden="true">
                 </div>
             </form>
-            <p class="ml-2">X</p>
+            <!-- count -->
+            <p class="ml-2">{{ $pertanyaan->count }}</p>
+            <!-- downvote -->
             <form action="{{route('vote.store1', ['id' => $pertanyaan->id])}}" method='post'>
                 @csrf
                 <div class="form-group">
@@ -28,10 +34,13 @@
                 </div>
             </form>
         </div>
+        <!-- end vote -->
+        <!-- pertanyaan_id -->
         <div class=col>
         <div class="card ml-2 mt-2">
           <div class="card-body">
-            <h4 class="card-text">{{ ucwords($pertanyaan->user->name) }} <small class="bg-secondary" style="font-size: 15px">{{ $pertanyaan->user->contribution }}</small></h4>
+            <h4 class="card-text">{{ ucwords($pertanyaan->user->name) }} 
+            <small class="bg-secondary" style="font-size: 15px">{{ $pertanyaan->user->contribution }}</small></h4>
             <h2 class="card-text"><b>{{ucfirst($pertanyaan->judul)}}</b></h2>
             <p class="card-text">{!!$pertanyaan->isi!!}</p>
             @foreach($pertanyaan->tags as $tag)
@@ -43,10 +52,14 @@
           </div>
         </div>
         </div>
+        <!-- end pertanyaan_id -->
       </div>
+    
     @foreach($pertanyaan -> answers as $key => $answer)
     <div class="row">
+          <!-- tombol vote -->
           <div class="col-0.5 ml-4 mr-auto mt-3" style="justify-content: center">
+            <!-- upvote -->
             <form action="{{route('vote.store2', ['id' => $pertanyaan->id])}}" method='post'>
                 @csrf
                 <div class="form-group">
@@ -56,7 +69,9 @@
                     <button type="submit" class="fa fa-chevron-up" style="color: black" aria-hidden="true">
                 </div>
             </form>
-            <p class="ml-2">X</p>
+            <!-- count -->
+            <p class="ml-2">{{ $answer->count }}</p>
+            <!-- down vote -->
             <form action="{{route('vote.store2', ['id' => $pertanyaan->id])}}" method='post'>
                 @csrf
                 <div class="form-group">
@@ -67,15 +82,18 @@
                 </div>
             </form>
           </div>
+          <!-- end vote -->
         <div class="col">
           <div class="card ml-2 mt-2">
             <div class="card-body">
-              <h2 class="card-title"><b>{{ucfirst($answer->user->name)}} <small class="bg-secondary" style="font-size: 15px">{{ $answer->user->contribution }}</small></b></h2>
+              <h2 class="card-title"><b>{{ucfirst($answer->user->name)}} 
+              <small class="bg-secondary" style="font-size: 15px">{{ $answer->user->contribution }}</small></b></h2>
               <p class="card-text">{!!$answer->isi!!}</p>
             </div>
           </div>
         </div>
     </div>
     @endforeach
+    <!-- end jawaban -->
   @endif
 @endsection
