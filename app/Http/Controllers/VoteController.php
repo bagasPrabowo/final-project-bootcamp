@@ -38,10 +38,14 @@ class VoteController extends Controller
             'required' => ':attribute harus diisi!',
         ])->validate();
         $user = Auth::user();
-        if (!$user){
-            return redirect()->route('login');
+        if ($user->contribution<15 && $request->vote == 0) {
+            return redirect()->back();
         }
         $vote = VotesAnswer::create($request->all());
+        if (!$user){
+            return redirect()->route('login');
+       
+        }
         if ($vote->save()) {
             return redirect()->route('pertanyaan.show', ['id' => $id]);
             }

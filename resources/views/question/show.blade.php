@@ -46,7 +46,23 @@
             @foreach($pertanyaan->tags as $tag)
               <button class="btn btn-info btn-sm">{{$tag->tag_name}}</button>
             @endforeach
-            <br>
+            
+            <div class="form-group">
+              <form action="{{route('comment.storeq', ['id' => $pertanyaan->id])}}" method="post">
+              @csrf
+                <input type="hidden" name="user_id" value="{{$user->id}}">
+                <input type="hidden" name="question_id" value="{{$pertanyaan->id}}">
+                <input type="text" style="border: none; border-bottom; 2px solid black; width: 90%" placeholder="Komentar" name="komentar">
+                <input type="submit" value="submit">
+              </form>
+            </div>
+            @foreach($pertanyaan -> questioncomments as $key => $comment)
+            <div class="card-body">
+            <p class="card-text" style="font-size: 17px">{{ ucwords($comment->user->name) }} 
+            <small class="bg-secondary" style="font-size: 10px">{{ $comment->user->contribution }}</small></p>
+            <p class="card-text" style="font-size: 17px">{{$comment->komentar}}</p>
+            </div>
+            @endforeach
             <a href="{{route('jawaban.index', ['pertanyaan_id' => $pertanyaan->id])}}" class="card-link btn btn-light">Jawab</a>
             <p class="card-text" style="text-align: right;">{{$pertanyaan->created_at}}</p>
           </div>
@@ -90,6 +106,22 @@
               <small class="bg-secondary" style="font-size: 15px">{{ $answer->user->contribution }}</small></b></h2>
               <p class="card-text">{!!$answer->isi!!}</p>
             </div>
+            <div class="form-group">
+              <form action="{{route('comment.storea', ['id' => $pertanyaan->id])}}" method="post">
+              @csrf
+                <input type="hidden" name="user_id" value="{{$user->id}}">
+                <input type="hidden" name="answer_id" value="{{$answer->id}}">
+                <input type="text" class="ml-3" style="border: none; border-bottom; 2px solid black; width: 90%" placeholder="Komentar" name="komentar">
+                <input type="submit" value="submit">
+              </form>
+            </div>
+            @foreach($answer -> answercomments as $key => $comment)
+            <div class="card-body">
+            <p class="card-text" style="font-size: 17px">{{ ucwords($comment->user->name) }} 
+            <small class="bg-secondary" style="font-size: 10px">{{ $comment->user->contribution }}</small></p>
+            <p class="card-text" style="font-size: 17px">{{$comment->komentar}}</p>
+            </div>
+            @endforeach
           </div>
         </div>
     </div>

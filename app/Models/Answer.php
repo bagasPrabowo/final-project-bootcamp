@@ -35,4 +35,8 @@ class Answer extends Model {
         return $answerUpVote - $answerDownVote;
     }
 
+    public function answercomments(){
+        return $this->hasMany('App\Models\AnswerComment');
+    }
+
 }

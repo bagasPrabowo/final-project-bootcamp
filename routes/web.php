@@ -43,6 +43,10 @@ Route::post('/pertanyaan/{id}/1', 'VoteController@store1')->name('vote.store1');
 
 Route::post('/pertanyaan/{id}/0', 'VoteController@store2')->name('vote.store2');
 
+route::post('/pertanyaan/{id}/commentq', 'CommentsController@storeq')->name('comment.storeq');
+
+route::post('/pertanyaan/{id}/commenta', 'CommentsController@storea')->name('comment.storea');
+
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();
 });

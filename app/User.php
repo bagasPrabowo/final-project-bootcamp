@@ -67,4 +67,14 @@ class User extends Authenticatable
         $answerDownVote = $this->votesanswers()->where('votes_answers.vote', 0)->count() * -1;
         return $questionUpVote + $questionDownVote + $answerUpVote + $answerDownVote;
     }
+
+    public function answercomment()
+    {
+        return $this->hasMany('App\Models\AnswerComment', 'user_id', 'id');
+    }
+
+    public function questioncomment()
+    {
+        return $this->hasMany('App\Models\QuestionComment', 'user_id', 'id');
+    }
 }

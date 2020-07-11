@@ -56,6 +56,7 @@ class QuestionsController extends Controller
     }
 
     public function show($id){
+        $user = Auth::user();
         $pertanyaan = Question::find($id);
         return view('question.show', get_defined_vars());
     }
