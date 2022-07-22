@@ -1,6 +1,9 @@
 /node_modules
 /public/hot
 /public/storage
+/public/ERD.mwb
+/public/ERD.mwb.bak
+/public/ERD.png
 /storage/*.key
 /vendor
 .env
